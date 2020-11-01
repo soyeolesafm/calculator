@@ -7,10 +7,25 @@
     <title>Calculator</title>
 </head>
 <body>
-    <h1>Calculator</h1>
-    <input type="">
-    <button>Submit</button>
-
+    <center>
+        <h1>Calculator</h1>
+        <input type="number", id="vnum">
+        <button id="submit">Add Number</button> 
+        <br> <br>
+        <p>Numbers:</p>
+        <p id="dispN"></p>
+        <select id="operator">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">x</option>
+            <option value="/">÷</option>
+        </select>
+        
+        <button id="calculate">=</button>
+        <p>Result:</p>
+        <p id="result"></p>
+        
+    </center>
 
     <script src="app.js"></script>
 </body>
