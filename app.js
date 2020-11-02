@@ -60,9 +60,6 @@ function calculate(op, arr) {
             alert(val);
     } 
     
-    // alert(val);
-
-    // document.getElementById('result').innerHTML = val
 
  
 }
@@ -87,8 +84,3 @@ function subNum() {
 equalButton.addEventListener('click', calculate)
 
 addNumber.addEventListener('click', subNum);
-
-// calculate('add', arr);
-// calculate('substract', arr);
-// calculate('multiply', arr);
-// calculate('divide', arr);
