@@ -68,8 +68,8 @@ function calculate(op, arr) {
 }
 
 function subNum() {
-    var inputs = document.getElementById('vnum')
-    var num = parseInt(document.getElementById('vnum').value);
+    
+    var num = parseFloat(document.getElementById('vnum').value  );
 
     arr.push(num)
 
@@ -81,7 +81,7 @@ function subNum() {
     }
     document.getElementById('dispN').innerHTML = valN;
 
-    inputs = input.value = '';
+    parseFloat(document.getElementById('vnum').value = '');
 }
 
 equalButton.addEventListener('click', calculate)
