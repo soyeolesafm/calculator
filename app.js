@@ -8,7 +8,7 @@ var addNumber = document.getElementById('submit');
 
 
 var arr = []
-console.log(arr);
+
 
 function addition() {
     var val = 0
@@ -67,6 +67,10 @@ function calculate(op, arr) {
 function subNum() {
     
     var num = parseFloat(document.getElementById('vnum').value  );
+
+    
+    
+    if(isNaN(num) === true) return
 
     arr.push(num)
 
