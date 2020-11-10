@@ -3,6 +3,13 @@ var equalButton = document.getElementById('calculate');
 
 var addNumber = document.getElementById('submit');
 
+const numberButtons = document.querySelectorAll('.number')
+
+numberButtons.addEventListener("click", forEach.updateDisplay);
+
+function updateDisplay{
+    alert('got clicked')
+}
 
 
 
@@ -63,6 +70,8 @@ function calculate(op, arr) {
 
  
 }
+
+
 
 function subNum() {
     
