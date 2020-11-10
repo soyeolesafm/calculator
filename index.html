@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Orbitron:wght@500&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
 </head>
 <body>
-    <center>
+    <!-- <center>
         <h1>Calculator</h1>
         <input type="text", id="vnum">
         <button id="submit">Add Number</button> 
@@ -25,8 +26,30 @@
         <p>Result:</p>
         <p id="result"></p>
         
-    </center>
+    </center> -->
+    <div class="calculator-grid">
+        <div class="output">878,816</div>
+        <button class="all-clear" id="ac">AC</button>
+        <button class="delete">DEL</button>
+        <button class="operation">÷</button>
+        <button class="number">1</button>
+        <button class="number">2</button>
+        <button class="number">3</button>
+        <button class="operation">*</button>
+        <button class="number">4</button>
+        <button class="number">5</button>
+        <button class="number">6</button>
+        <button class="operation">+</button>
+        <button class="number">7</button>
+        <button class="number">8</button>
+        <button class="number">9</button>
+        <button class="operation">-</button>
+        <button class="number">.</button>
+        <button class="number">0</button>
+        <button class="equals" id="equal">=</button>
 
+    </div>
+    
     <script src="app.js"></script>
 </body>
 </html>
