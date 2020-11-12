@@ -21,7 +21,7 @@ body {
   grid-template-rows: minmax(120px, auto) repeat(5, 100px);
 }
 
-#ac,
+#all-clear,
 #equal {
   grid-column: span 2;
   border: 1px solid #734046;
