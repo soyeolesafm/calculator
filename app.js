@@ -10,6 +10,7 @@ const operationButtons = document.querySelectorAll(`.operation`).length;
 const allClear = document.querySelector(`#all-clear`)
 const deleteButton = document.querySelector(`#delete`)
 const equalButton = document.querySelector(`#equal`)
+const display = document.querySelector(`.output`)
 
 equalButton.addEventListener(`click`, function() {
     alert('equal')
@@ -21,7 +22,7 @@ deleteButton.addEventListener(`click`, function() {
 })
 
 allClear.addEventListener(`click`, function (){
-    alert(`all clear`)
+    display.innerHTML = ``
 })
 
 for (var i = 0; i < numberButtons; i++) {
