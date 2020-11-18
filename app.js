@@ -11,6 +11,9 @@ const allClear = document.querySelector(`#all-clear`)
 const deleteButton = document.querySelector(`#delete`)
 const equalButton = document.querySelector(`#equal`)
 const display = document.querySelector(`.output`)
+const currentDisplay = document.querySelector(`.current-display`).innerText;
+const previousDisplay = document.querySelector(`.previous-display`).innerText;
+
 
 
 equalButton.addEventListener(`click`, function() {
@@ -23,7 +26,7 @@ deleteButton.addEventListener(`click`, function() {
 })
 
 allClear.addEventListener(`click`, function (){
-    display.innerHTML = ``
+    return display.innerHTML = ``
 })
 
 for (var i = 0; i < numberButtons; i++) {
@@ -41,9 +44,17 @@ for (var i = 0; i < operationButtons; i++) {
     
 }
 
+function displayPrevious (num){
+    return document.querySelector(`.previous-display`).innerText=num
+    
+}
 
+function displayCurrent (num){
+    return document.querySelector('.current-display').innerText=num
+}
 
-
+displayPrevious(87)
+displayCurrent(1988)
 
 
 
