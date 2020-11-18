@@ -50,7 +50,15 @@ body {
   grid-column: 1/-1;
   background-color: #e79e4f;
   padding: 15px;
-  font-size: 3rem;
   word-wrap: break-word;
   word-break: break-all;
+}
+
+.output .previous-display {
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.output .current-display {
+  font-size: 2.5rem;
 }
