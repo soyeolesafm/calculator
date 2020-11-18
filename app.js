@@ -12,6 +12,7 @@ const deleteButton = document.querySelector(`#delete`)
 const equalButton = document.querySelector(`#equal`)
 const display = document.querySelector(`.output`)
 
+
 equalButton.addEventListener(`click`, function() {
     alert('equal')
 })
@@ -28,6 +29,7 @@ allClear.addEventListener(`click`, function (){
 for (var i = 0; i < numberButtons; i++) {
     document.querySelectorAll(`.number`)[i].addEventListener(`click`, function (){
         alert('number');
+        console.log(buttonValue);
     }) 
     
 }
