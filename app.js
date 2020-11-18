@@ -5,8 +5,8 @@
 
 // *SELECTING BUTTONS*
 
-const numberButtons = document.querySelectorAll(`.number`).length;
-const operationButtons = document.querySelectorAll(`.operation`).length;
+const numberButtons = document.querySelectorAll(`.number`);
+const operationButtons = document.querySelectorAll(`.operation`);
 const allClear = document.querySelector(`#all-clear`)
 const deleteButton = document.querySelector(`#delete`)
 const equalButton = document.querySelector(`#equal`)
@@ -29,17 +29,17 @@ allClear.addEventListener(`click`, function (){
     return display.innerHTML = ``
 })
 
-for (var i = 0; i < numberButtons; i++) {
+for (var i = 0; i < numberButtons.length; i++) {
     document.querySelectorAll(`.number`)[i].addEventListener(`click`, function (){
-        alert('number');
-        console.log(buttonValue);
+        displayCurrent(this.innerText)
+        
     }) 
     
 }
 
-for (var i = 0; i < operationButtons; i++) {
+for (var i = 0; i < operationButtons.length; i++) {
     document.querySelectorAll(`.operation`)[i].addEventListener(`click`, function (){
-        alert('operation');
+        alert(this.innerText);
     }) 
     
 }
