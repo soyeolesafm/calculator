@@ -21,17 +21,30 @@ equalButton.addEventListener(`click`, function() {
 })
 
 
-deleteButton.addEventListener(`click`, function() {
-    alert (`delete`)
-})
+// deleteButton.addEventListener(`click`, function() {
+//     alert (`delete`)
+// })
 
 allClear.addEventListener(`click`, function (){
-    return display.innerHTML = ``
+    displayPrevious('')
+    displayCurrent('')
+})
+
+deleteButton.addEventListener(`click`, function (){
+    var output = numberFormat(getCurrentValue()).toString();
+    if(output){
+        output = output.slice(0, -1);
+        displayCurrent(output);
+    }
 })
 
 for (var i = 0; i < numberButtons.length; i++) {
     document.querySelectorAll(`.number`)[i].addEventListener(`click`, function (){
-        displayCurrent(this.innerText)
+        var output = numberFormat(getCurrentValue());
+        if (output !=NaN){
+            output = output+this.innerText;
+            displayCurrent(output);
+        }
         
     }) 
     
@@ -50,11 +63,22 @@ function displayPrevious (num){
 }
 
 function displayCurrent (num){
-    return document.querySelector('.current-display').innerText=num
+    var strNumber = function(num){
+        var n = Number(num);
+        var value = n.toLocaleString(`en`);
+        return value
+    }
+    
+    return document.querySelector('.current-display').innerText=strNumber(num)
 }
 
-displayPrevious(87)
-displayCurrent(1988)
+function getCurrentValue (){
+    return document.querySelector(`.current-display`).innerText;
+}
+
+function numberFormat (num){
+    return Number(num.replace(/,/g, ``))
+}
 
 
 
