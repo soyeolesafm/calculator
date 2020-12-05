@@ -16,9 +16,7 @@ const previousDisplay = document.querySelector(`.previous-display`).innerText;
 
 
 
-equalButton.addEventListener(`click`, function() {
-    alert('equal')
-})
+
 
 
 // deleteButton.addEventListener(`click`, function() {
@@ -41,7 +39,7 @@ deleteButton.addEventListener(`click`, function (){
 for (var i = 0; i < numberButtons.length; i++) {
     document.querySelectorAll(`.number`)[i].addEventListener(`click`, function (){
         var output = numberFormat(getCurrentValue());
-        if (output !=NaN){
+        if (output !=NaN ){
             output = output+this.innerText;
             displayCurrent(output);
         }
@@ -49,10 +47,28 @@ for (var i = 0; i < numberButtons.length; i++) {
     }) 
     
 }
+function numberFormat (num){
+    return Number(num.replace(/,/g, ``))
+}
 
 for (var i = 0; i < operationButtons.length; i++) {
     document.querySelectorAll(`.operation`)[i].addEventListener(`click`, function (){
-        alert(this.innerText);
+        var output = displayCurrent()
+        var prevOutput = displayPrevious()
+        if (output !=``){
+            output = numberFormat(output);
+            prevOutput = prevOutput + output
+            if(this.innerText==`=`){
+                var result = eval(prevOutput);
+                displayCurrent(result);
+                displayPrevious(``);
+            }else{
+                prevOutput= prevOutput + this.innerText;
+                displayPrevious(prevOutput)
+                displayCurrent(``);
+            }
+        }
+        
     }) 
     
 }
@@ -76,9 +92,7 @@ function getCurrentValue (){
     return document.querySelector(`.current-display`).innerText;
 }
 
-function numberFormat (num){
-    return Number(num.replace(/,/g, ``))
-}
+
 
 
 
