@@ -1,8 +1,3 @@
-// var equalButton = document.getElementById('calculate');
-
-
-// var addNumber = document.getElementById('submit');
-
 // *SELECTING BUTTONS*
 
 const numberButtons = document.querySelectorAll(`.number`);
@@ -11,171 +6,124 @@ const allClear = document.querySelector(`#all-clear`)
 const deleteButton = document.querySelector(`#delete`)
 const equalButton = document.querySelector(`#equal`)
 const display = document.querySelector(`.output`)
-const currentDisplay = document.querySelector(`.current-display`).innerText;
-const previousDisplay = document.querySelector(`.previous-display`).innerText;
+const currentDisplay = document.querySelector(`.current-display`);
+const previousDisplay = document.querySelector(`.previous-display`);
+
+// declare variables to storage current and previous output the result of the operation as null for default...
+// ... to storage the operation button value and last to state the decimal dot as false
+
+let currentOutput = ``;
+let previousOutput = ``;
+let result = null;
+let operationButtonValue = ``;
+let decimalDot = false;
 
 
+// create a function for the number buttons so we add a number to the display everytime we press a number
+// and check if the decimal dot is false or not so we can add it to the number
+
+for (var i = 0; i < numberButtons.length; i++) {
+    document.querySelectorAll(`.number`)[i].addEventListener(`click`, (e) => {
+        if (e.target.innerText === `.` && !decimalDot){
+            decimalDot = true;
+        }else if (e.target.innerText === `.` && decimalDot) return
+
+        if(e.target.innerText === `0` && currentDisplay.innerText === `0`) return
+        
+        currentOutput += e.target.innerText;
+        currentDisplay.innerText = currentOutput
+
+    })
+
+}
+
+// create a function that adds the current display to the previous display along with the operator not after checking
+// there is a value to add this also need a callback to a function that proceed with an operation 
+//so we can storage the result every time an operator is pressed and also a function that clears the current output
+// and reset the decimal dot to false
+
+for (var i = 0; i < operationButtons.length; i++) {
+    document.querySelectorAll(`.operation`)[i].addEventListener(`click`, (e) => {
+
+     if (!currentOutput) return;
+     decimalDot = false;
+     const operatorValue = e.target.innerText
+     // add a conditional to check if there is a value on the output if to storage a result if is not the result
+     // will be the current display
+     if (currentOutput && previousOutput && operationButtonValue ){
+         calculate()
+     } else {
+         result = currentOutput
+     }
+     outputDisplay(operatorValue)
+     operationButtonValue = operatorValue
+     console.log(result);
 
 
+    })
 
+}
+
+// lets create the outputDisplay function this function will clear the current output and add the value along with
+// the operator to the prevous output value and set it to default empty
+
+const outputDisplay = (operator = ``) => {
+    previousOutput += currentOutput + ` ` + operator + ` `;
+    previousDisplay.innerText = previousOutput;
+    currentDisplay.innerText = ``
+    currentOutput = ``
+}
+
+// lets create the calculate function this function should storage result everytime is called
+
+const calculate = () => {
+    switch (operationButtonValue){
+        case `*`:
+            result = parseFloat(result) * parseFloat(currentOutput);
+            break;
+        case `+`:
+            result = parseFloat(result) + parseFloat(currentOutput);
+            break;
+        case `-`:
+            result = parseFloat(result) - parseFloat(currentOutput);
+            break;
+        case `÷`:
+            result = parseFloat(result) / parseFloat(currentOutput);
+            break;
+    }
+}
+
+// add functionality to the equal button
+
+equalButton.addEventListener(`click`, () => {
+    if (!currentOutput || !previousOutput) return;
+    decimalDot = false;
+    calculate()
+    outputDisplay()
+    currentDisplay.innerText = result;
+    currentOutput = result;
+    previousOutput = ``
+})
 
 // deleteButton.addEventListener(`click`, function() {
 //     alert (`delete`)
 // })
-
-allClear.addEventListener(`click`, function (){
-    displayPrevious('')
-    displayCurrent('')
+// add functionality to the clear button 
+allClear.addEventListener(`click`, () => {
+   currentDisplay.innerText = `0`
+   previousDisplay.innerText = ``;
+   currentOutput = '';
+   previousOutput = ``;
+   decimalDot = false
 })
 
-deleteButton.addEventListener(`click`, function (){
-    var output = numberFormat(getCurrentValue()).toString();
-    if(output){
-        output = output.slice(0, -1);
-        displayCurrent(output);
-    }
+deleteButton.addEventListener(`click`, () => {
+    
+    
+    currentOutput =  currentOutput.slice(0, -1);
+    currentDisplay.innerText = currentOutput
+    decimalDot = false
+    
 })
 
-for (var i = 0; i < numberButtons.length; i++) {
-    document.querySelectorAll(`.number`)[i].addEventListener(`click`, function (){
-        var output = numberFormat(getCurrentValue());
-        if (output !=NaN ){
-            output = output+this.innerText;
-            displayCurrent(output);
-        }
-        
-    }) 
-    
-}
-function numberFormat (num){
-    return Number(num.replace(/,/g, ``))
-}
 
-for (var i = 0; i < operationButtons.length; i++) {
-    document.querySelectorAll(`.operation`)[i].addEventListener(`click`, function (){
-        var output = displayCurrent()
-        var prevOutput = displayPrevious()
-        if (output !=``){
-            output = numberFormat(output);
-            prevOutput = prevOutput + output
-            if(this.innerText==`=`){
-                var result = eval(prevOutput);
-                displayCurrent(result);
-                displayPrevious(``);
-            }else{
-                prevOutput= prevOutput + this.innerText;
-                displayPrevious(prevOutput)
-                displayCurrent(``);
-            }
-        }
-        
-    }) 
-    
-}
-
-function displayPrevious (num){
-    return document.querySelector(`.previous-display`).innerText=num
-    
-}
-
-function displayCurrent (num){
-    var strNumber = function(num){
-        var n = Number(num);
-        var value = n.toLocaleString(`en`);
-        return value
-    }
-    
-    return document.querySelector('.current-display').innerText=strNumber(num)
-}
-
-function getCurrentValue (){
-    return document.querySelector(`.current-display`).innerText;
-}
-
-
-
-
-
-// var arr = []
-
-
-// function addition() {
-//     var val = 0
-//     for (var i = 0; i< arr.length; i++){
-//         val += arr[i]
-        
-//     }
-//     document.getElementById('result').innerHTML = val;
-    
-// }
-// function substraction() {
-//     var val = (Math.max.apply(Math, arr)) * 2; 
-//     for (var i = 0; i< arr.length; i++){
-//         val -= arr[i];
-        
-//     }
-    
-//     document.getElementById('result').innerHTML = val
-// }
-// function division() {
-//     var a = arr[0];
-//     var b = arr[1];
-//     var val = a / b;
-    
-//     document.getElementById('result').innerHTML = val
-// }
-// function multiplication() {
-//     var val = 1;
-//     for (var i = 0; i< arr.length; i++){
-//         val *= arr[i];
-//     }
-//     document.getElementById('result').innerHTML = val
-// }
-
-// function calculate(op, arr) {
-
-//     var op =document.getElementById('operator').value
-
-//     switch (op) {
-//         case '+':
-//             return addition(arr);
-//         case '-':
-//             return substraction(arr);
-//         case '*':
-//             return multiplication(arr);
-//         case '/':
-//             return division(arr);
-            
-//             alert(val);
-//     } 
-    
-
- 
-// }
-
-
-
-// function subNum() {
-    
-//     var num = parseFloat(document.getElementById('vnum').value  );
-
-    
-    
-//     if(isNaN(num) === true) return
-
-//     arr.push(num)
-
-//     var valN = ''
-
-//     for(i = 0; i < arr.length; i++){
-
-//         valN = valN + arr[i] + ", ";
-//     }
-//     document.getElementById('dispN').innerHTML = valN;
-
-//     parseFloat(document.getElementById('vnum').value = '');
-// }
-
-
-
-// addNumber.addEventListener('click', subNum);
