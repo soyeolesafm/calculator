@@ -24,6 +24,10 @@ let decimalDot = false;
 
 for (var i = 0; i < numberButtons.length; i++) {
     document.querySelectorAll(`.number`)[i].addEventListener(`click`, (e) => {
+        if (currentOutput === result) {
+            currentOutput = ``
+            previousDisplay.innerText = ``
+        };
         if (e.target.innerText === `.` && !decimalDot){
             decimalDot = true;
         }else if (e.target.innerText === `.` && decimalDot) return
@@ -119,7 +123,7 @@ allClear.addEventListener(`click`, () => {
 
 deleteButton.addEventListener(`click`, () => {
     
-    
+    if (currentOutput === result) return;
     currentOutput =  currentOutput.slice(0, -1);
     currentDisplay.innerText = currentOutput
     decimalDot = false
