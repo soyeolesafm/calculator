@@ -61,7 +61,7 @@ for (var i = 0; i < operationButtons.length; i++) {
      }
      outputDisplay(operatorValue)
      operationButtonValue = operatorValue
-     console.log(result);
+     
 
 
     })
@@ -123,7 +123,10 @@ allClear.addEventListener(`click`, () => {
 
 deleteButton.addEventListener(`click`, () => {
     
-    if (currentOutput === result) return;
+    if (currentOutput === result) {
+        currentDisplay.innerText = `0`;
+        currentOutput = ``;
+    }
     currentOutput =  currentOutput.slice(0, -1);
     currentDisplay.innerText = currentOutput
     decimalDot = false
